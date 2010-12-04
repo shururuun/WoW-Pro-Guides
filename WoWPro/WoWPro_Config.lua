@@ -647,66 +647,88 @@ local function createBlizzOptions()
 				order = 5,
 				type = "description",
 				name = " ",
-			},    
-			aboutheader = {
+			},     
+			trialheader = {
 				order = 6,
 				type = "header",
-				name = "About WoW-Pro",
+				name = "WoW-Pro Guides - Trial Version",
 			}, 
-			blank3 = {
+			trial1 = {
 				order = 7,
 				type = "description",
 				name = " ",
 			},  	
-			about = {
+			trial2 = {
 				order = 8,
+				type = "description",
+				fontSize = "medium",
+				name = "You are using a trial version of our addon guide. The full version is still 100% FREE, but you'll need to download "
+					.."it from our website at www.wow-pro.com/addon."
+			},  	
+			trial3 = {
+				order = 9,
+				type = "description",
+				name = " ",
+			},  	
+			aboutheader = {
+				order = 10,
+				type = "header",
+				name = "About WoW-Pro",
+			}, 
+			blank3 = {
+				order = 11,
+				type = "description",
+				name = " ",
+			},  	
+			about = {
+				order = 12,
 				type = "description",
 				fontSize = "medium",
 				name = "WoW-Pro.com is a guide website by gamers, for gamers. "
 			}, 	
 			blank5 = {
-				order = 9,
+				order = 13,
 				type = "description",
 				name = " ",
 			},  
 			about2 = {
-				order = 10,
+				order = 14,
 				type = "description",
 				fontSize = "medium",
 				name = 
 					"The site hosts hundreds of free guides covering every facet of World of Warcraft. "
 			}, 	 	
 			blank6 = {
-				order = 11,
+				order = 15,
 				type = "description",
 				name = " ",
 			},  
 			about3 = {
-				order = 12,
+				order = 16,
 				type = "description",
 				fontSize = "medium",
 				name = 
 					"We are most famous for our leveling guides, especially those written by the site administrator, Jame. "
 			}, 	 	
 			blank7 = {
-				order = 13,
+				order = 17,
 				type = "description",
 				name = " ",
 			},  
 			about4 = {
-				order = 14,
+				order = 18,
 				type = "description",
 				fontSize = "medium",
 				name = 
 					"Over the years WoW-Pro has grown into a huge, active community of gamers. "
 			},  	
 			blank8 = {
-				order = 15,
+				order = 19,
 				type = "description",
 				name = " ",
 			},  	
 			about5 = {
-				order = 16,
+				order = 20,
 				type = "description",
 				fontSize = "medium",
 				name = 
