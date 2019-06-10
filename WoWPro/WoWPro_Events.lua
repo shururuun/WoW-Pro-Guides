@@ -403,6 +403,7 @@ WoWPro.RegisterEventHandler("PLAYER_ENTERING_WORLD", function (event,...)
 		WoWPro.Titlebar:Show()
 		WoWPro.Hidden = nil
 	end
+	WoWPro:UpdateTradeSkills()
     end)
 
 -- Locking event processong till after things get settled --
@@ -830,6 +831,12 @@ WoWPro.RegisterEventHandler("QUEST_ACCEPTED", function (event,...)
     end
     end)
 
+-- scan skill lines when they change
+WoWPro.RegisterEventHandler("SKILL_LINES_CHANGED", function(event, ...)
+	WoWPro.UpdateTradeSkills(...)
+end)
+
+-- register newly learned recipes
 WoWPro.RegisterEventHandler("NEW_RECIPE_LEARNED", function (event,...)
     WoWPro.LearnRecipe(...)
     end)
