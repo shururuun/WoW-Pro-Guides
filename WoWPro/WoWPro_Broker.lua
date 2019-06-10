@@ -1534,7 +1534,7 @@ function WoWPro.NextStep(k,i)
                     end
                     if (profmaxlvl == 0) and (skillRank >= proflvl) then
                         WoWPro.why[k] = "NextStep(): profmaxlvl == 0 and skillRank >= proflvl"
-                        Pro:dbp(WoWPro.why[k])
+                        WoWPro:dbp(WoWPro.why[k])
                         skip = false
                     end
                     if (profmaxlvl > 0) and (skillRank < profmaxlvl) then
