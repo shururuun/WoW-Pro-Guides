@@ -1524,43 +1524,40 @@ function WoWPro.NextStep(k,i)
                 proflvl = proflvl - WoWProCharDB.ProfessionalfOffset
                 if 	proflvl < 1 then
                     proflvl = 1
-                end	    
+                end
 			end
             if type(WoWProCharDB.Tradeskills) == 'table' and type(prof) == 'string' then
-                local hasProf = false
                 skip = true --Profession steps skipped by default
-                if WoWProCharDB.Tradeskills[prof] then
-                    hasProf = true
-                    local skillRank = WoWProCharDB.Tradeskills[prof].skill
-                    if WoWPro.action[k] == 'M' then
-                        proflvl = math.max(proflvl - rankModifier, 1)
-                        profmaxlvl = math.max(profmaxlvl - rankModifier, 1)
+                local tradeskill = WoWProCharDB[prof]
+                if tradeskill then
+                    if WoWPro.action[k] == 'M' and tradeskill.skillMod then
+                        proflvl = math.max(proflvl - tradeskill.skillMod, 1)
+                        profmaxlvl = math.max(profmaxlvl - tradeskill.skillMod, 1)
                     end
-                    if (profmaxlvl == 0) and (skillRank >= proflvl) then
+                    if (profmaxlvl == 0) and (tradeskill.skillLvl >= proflvl) then
                         WoWPro.why[k] = "NextStep(): profmaxlvl == 0 and skillRank >= proflvl"
                         WoWPro:dbp(WoWPro.why[k])
                         skip = false
                     end
-                    if (profmaxlvl > 0) and (skillRank < profmaxlvl) then
-                        WoWPro.why[k] = "NextStep(): profmaxlvl > 0 and skillRank < profmaxlvl"
+                    if (profmaxlvl > 0) and (tradeskill.skillLvl < proflvl) then
+                        WoWPro.why[k] = "NextStep(): profmaxlvl > 0 and skillRank < proflvl"
                         WoWPro:dbp(WoWPro.why[k])
                         skip = false
                     end
-                    if (profmaxskill > 0) and (profmaxskill < maxskill) then
+                    if (profmaxskill > 0) and (profmaxskill < tradeskill.skillMax) then
                         WoWPro.why[k] = "NextStep(): profmaxlvl > 0 and profmaxskill < maxskill"
                         WoWPro:dbp(WoWPro.why[k])
                         skip = true
                     end
                     WoWPro:dbp("prof skip = %s", tostring(skip))
-                end
 
-                -- Zero proflvl special skip logic
-                if (hasProf == false) and (proflvl == 0) then
-                    WoWPro:dbp("Prof unskip qid %s for no %s for proflvl == 0", WoWPro.QID[k], prof)
+                -- zero proflvl special unskip logic
+                elseif profmaxlvl == 0 then
+                    WoWPro:dbp("Prof unskip qid %s for no %s for profmaxlvl == 0", WoWPro.QID[k], prof)
                     skip = false
-                end
-                if WoWPro.action[k] == "A" and not hasProf then
-                    -- If they do not have the profession, mark the step and quest as skipped
+
+                -- If they do not have the profession, mark the step and quest as skipped
+                elseif WoWPro.action[k] == "A"  then
                     WoWPro.why[k] = "NextStep(): Permanently skipping step because player does not have a profession."
                     WoWProCharDB.Guide[GID].skipped[k] = true
                     WoWPro:SetQIDsInTable(QID, WoWProCharDB.skippedQIDs)
