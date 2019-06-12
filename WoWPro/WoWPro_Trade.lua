@@ -56,10 +56,14 @@ function WoWPro.UpdateTradeSkills()
     if WoWPro.CLASSIC then
         -- in Classic we have to rely on skill lines
         for idx = 1, GetNumSkillLines() do
-            local localName, header, _, skillLevel = GetSkillLineInfo(idx)
+            local localName, header, _, skillLevel, _, skillModifier, skillMaxRank = GetSkillLineInfo(idx)
             local tradeskillName = WoWPro.ProfessionLocalNames[localName]
             if not header and tradeskillName ~= nil then
-                tradeskills[tradeskillName] = { skill = skillLevel }
+                tradeskills[tradeskillName] = {
+                    skillLvl = skillLevel,
+                    skillMod = skillModifier,
+                    skillMax = skillMaxRank
+                }
             end
         end
     else
@@ -68,10 +72,14 @@ function WoWPro.UpdateTradeSkills()
         profs[1], profs[2], profs[3], profs[4], profs[5], profs[6] = GetProfessions()
         for idx = 1, 6 do
             if profs[idx] then
-                local _, _, skillLevel, _, _, _, skillLine = GetProfessionInfo(profs[idx])
+                local _, _, skillLevel, maxSkillLevel, _, _, skillLine, skillModifier = GetProfessionInfo(profs[idx])
                 local profName = WoWPro.ProfessionSkillLines[skillLine]
                 if profName then
-                    tradeskills[profName] = { skill = skillLevel }
+                    tradeskills[profName] = {
+                        skillLvl = skillLevel,
+                        skillMax = maxSkillLevel,
+                        skillMod = skillModifier
+                    }
                 end
             end
         end
@@ -90,7 +98,9 @@ function WoWPro.UpdateTradeSkills()
             if WoWProCharDB.Tradeskills[trade] == nil then
                 WoWProCharDB.Tradeskills[trade] = info
             else
-                WoWProCharDB.Tradeskills[trade].skill = info.skill
+                WoWProCharDB.Tradeskills[trade].skillLvl = info.skillLvl
+                WoWProCharDB.Tradeskills[trade].skillMax = info.skillMax
+                WoWProCharDB.Tradeskills[trade].skillMod = info.skillMod
             end
         end
     else
