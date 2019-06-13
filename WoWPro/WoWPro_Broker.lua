@@ -1529,7 +1529,7 @@ function WoWPro.NextStep(k,i)
 			end
             if type(WoWProCharDB.Tradeskills) == 'table' and type(prof) == 'string' then
                 skip = true --Profession steps skipped by default
-                local tradeskill = WoWProCharDB[prof]
+                local tradeskill = WoWProCharDB.Tradeskills[prof]
                 if tradeskill then
                     if WoWPro.action[k] == 'M' and tradeskill.skillMod then
                         proflvl = math.max(proflvl - tradeskill.skillMod, 1)
@@ -1570,7 +1570,7 @@ function WoWPro.NextStep(k,i)
 			    WoWPro:Error("Warning: malformed profession tag [%s] at step %d",WoWPro.prof[k],k)
 			end
 		end
-        
+
 		-- Skipping reputation quests if their requirements are met --
 		if WoWPro.rep and WoWPro.rep[k] and not skip then
 			local rep, factionIndex, temprep, replvl, flip = string.split(";",WoWPro.rep[k])
