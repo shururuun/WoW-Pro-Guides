@@ -1553,8 +1553,8 @@ function WoWPro.NextStep(k,i)
                     WoWPro:dbp("prof skip = %s", tostring(skip))
 
                 -- zero proflvl special unskip logic
-                elseif profmaxlvl == 0 then
-                    WoWPro:dbp("Prof unskip qid %s for no %s for profmaxlvl == 0", WoWPro.QID[k], prof)
+                elseif proflvl == 0 then
+                    WoWPro:dbp("Prof unskip qid %s for no %s for provlvl == 0", WoWPro.QID[k] or "unknown", prof)
                     skip = false
 
                 -- If they do not have the profession, mark the step and quest as skipped
