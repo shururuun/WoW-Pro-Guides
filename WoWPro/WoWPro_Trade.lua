@@ -193,7 +193,7 @@ function WoWPro.UpdateTradeSkills()
         for idx = 1, 6 do
             if profs[idx] then
                 local _, _, skillLevel, maxSkillLevel, _, _, skillLine, skillModifier = GetProfessionInfo(profs[idx])
-                local profName = WoWPro.ProfessionSkillLines[skillLine]
+                local profName = WoWPro.ProfessionSkillLines[skillLine].name
                 if profName then
                     tradeskills[profName] = {
                         skillLvl = skillLevel,
