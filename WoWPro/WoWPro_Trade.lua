@@ -17,7 +17,7 @@ WoWPro.ProfessionSkillLines = {
     [393] = 'Skinning',
     [755] = 'Jewelcrafting',
     [773] = 'Inscription',
-    [794] = 'Archaeology '
+    [794] = 'Archaeology'
 }
 
 -- list of all available professions and SpellIDs with their names
