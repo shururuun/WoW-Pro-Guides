@@ -140,41 +140,42 @@ WoWPro.ProfessionSkillLines = {
      [794] = { name = 'Archaeology' }
 }
 
--- list of all available professions and SpellIDs with their names
-WoWPro.ProfessionSpellIDs = {
-    ['Alchemy'] = 2259,
-    ['Archeology'] = 78670,
-    ['Blacksmithing'] = 2018,
-    ['Cooking'] = 2550,
-    ['Enchanting'] = 7411,
-    ['Engineering'] = 4036,
-    ['First Aid'] = 3273,
-    ['Fishing'] = 7620,
-    ['Herbalism'] = 9134,
-    ['Inscription'] = 45357,
-    ['Jewelcrafting'] = 25229,
-    ['Leatherworking'] = 2108,
-    ['Mining'] = 2575,
-    ['Skinning'] = 8613,
-    ['Tailoring'] = 3908
-}
 
--- generate a list of localized profession names via GetSpellInfo()
-WoWPro.ProfessionLocalNames = {}
-for profName, spellID in pairs(WoWPro.ProfessionSpellIDs) do
-    local name = GetSpellInfo(spellID)
-    if name ~= nil then
-        WoWPro.ProfessionLocalNames[name] = profName
+-- special handling for Classic because of the reduced addon API
+if WoWPro.CLASSIC then
+
+    -- list of all available professions and SpellIDs with their names
+    WoWPro.ProfessionSpellIDs = {
+        ['Alchemy'] = 2259,
+        ['Archeology'] = 78670,
+        ['Blacksmithing'] = 2018,
+        ['Cooking'] = 2550,
+        ['Enchanting'] = 7411,
+        ['Engineering'] = 4036,
+        ['First Aid'] = 3273,
+        ['Fishing'] = 7620,
+        ['Herbalism'] = 9134,
+        ['Inscription'] = 45357,
+        ['Jewelcrafting'] = 25229,
+        ['Leatherworking'] = 2108,
+        ['Mining'] = 2575,
+        ['Skinning'] = 8613,
+        ['Tailoring'] = 3908
+    }
+
+    -- generate a list of localized profession names via GetSpellInfo()
+    WoWPro.ProfessionLocalNames = {}
+    for profName, spellID in pairs(WoWPro.ProfessionSpellIDs) do
+        local localName = GetSpellInfo(spellID)
+        if localName ~= nil then
+            WoWPro.ProfessionLocalNames[localName] = profName
+        end
     end
-end
 
-
--- scan skill lines for profession information
-function WoWPro.UpdateTradeSkills()
-    WoWPro:dbp("UpdateTradeSkills()")
-    local tradeskills = {}
-    if WoWPro.CLASSIC then
-        -- in Classic we have to rely on skill lines
+    -- get tradeskill information from skill lines
+    function WoWPro.UpdateTradeSkills()
+        WoWPro:dbp("UpdateTradeSkills() for Classic")
+        local tradeskills = {}
         for idx = 1, GetNumSkillLines() do
             local localName, header, _, skillLevel, _, skillModifier, skillMaxRank = GetSkillLineInfo(idx)
             local tradeskillName = WoWPro.ProfessionLocalNames[localName]
@@ -186,8 +187,13 @@ function WoWPro.UpdateTradeSkills()
                 }
             end
         end
-    else
-        -- the modern API has GetProfessions()/GetProfessionInfo()
+        WoWPro.UpdateTradeSkillsTable(tradeskills)
+    end
+else
+    -- get tradeskill information from GetProfession/GetProfessionInfo
+    function WoWPro.UpdateTradeSkills()
+        WoWPro:dbp("UpdateTradeSkills() for Live")
+        local tradeskills = {}
         local profs = {}
         profs[1], profs[2], profs[3], profs[4], profs[5], profs[6] = GetProfessions()
         for idx = 1, 6 do
@@ -203,9 +209,13 @@ function WoWPro.UpdateTradeSkills()
                 end
             end
         end
+        WoWPro.UpdateTradeSkillsTable(tradeskills)
     end
+end
 
-    -- merge tradeskill update so we don't forget detailed ScanTrade information
+
+-- update WoWProCharDB.Tradeskill map so we don't forget detailed ScanTrade() info
+function WoWPro.UpdateTradeSkillsTable(tradeskills)
     if WoWProCharDB.Tradeskills then
         -- remove unlearned professions
         for trade in pairs(WoWProCharDB.Tradeskills) do
@@ -265,11 +275,12 @@ function WoWPro.ScanTrade()
                     end
                 end
             end
-		end
+        end
 	end
 
     WoWProCharDB.Trades  = Trade
 end
+
 
 function WoWPro.LearnRecipe(which)
     local which = tonumber(which)
