@@ -2,7 +2,7 @@
 -- Permissions beyond the scope of this license may be available at http://www.wow-pro.com/License.
 
 local guide = WoWPro:RegisterGuide('ClassicTeldrassil0612', "Leveling", 'Teldrassil', 'Shururu', 'Alliance', 1)
-WoWPro:GuideName(guide, 'Teldrassil 06-12')
+WoWPro:GuideName(guide, 'Teldrassil')
 WoWPro:GuideLevels(guide, 6, 12, 7)
 WoWPro:GuideNextGuide(guide, 'ClassicDarkshore1220')
 WoWPro:GuideSteps(guide, function() return [[
@@ -34,6 +34,7 @@ C The Emerald Dreamcatcher|QID|2438|M|68.00,59.61|L|8048|N|Inside the small hous
 T Gnarlpine Corruption|QID|476|M|55.96,57.28|N|To Athridas Bearmantle.|
 A The Relics of Wakening|QID|483|M|55.96,57.28|N|From Athridas Bearmantle.|
 T The Emerald Dreamcatcher|QID|2438|M|55.58,56.95|N|At the top of the building to Tallonkai Swiftroot.|
+A Elixirs for the Bladeleafs|QID|1581|P|Alchemy;171|M|56.09,57.72|N|Only available for Alchemists with a skill of at least 20. You will not be told when to turn this in. Do it at your own speed and turn it in whenever you can.|
 A Ferocitas the Dream Eater|QID|2459|M|55.58,56.95|N|From Tallonkai Swiftroot.|
 A The Road to Darnassus|AVAILABLE|487|M|55.74,58.34|N|If Moon Priestess Amara is currently here pick up her questr. If not she is currently patrolling and we will pick it up later, so right click it off.|
 T Crown of the Earth|QID|929|M|56.15,61.71|N|To Corithras Moonrage.|
@@ -66,7 +67,6 @@ T Seek Redemption!|ACTIVE|489|M|60.43,56.25|N|To Zenn Foulhoof. He may be alread
 
 L Level 8|LVL|8|N|If you are not level 8 yet grind on mobs.|
 r Sell + Train|QID|932|M|56.21,59.56|N|Sell junk, repair and restock. Visit your trainer.|
-A Elixirs for the Bladeleafs|QID|1581|P|Alchemy;171|M|56.09,57.72|N|Only available for Alchemists with a skill of at least 20. You will not be told when to turn this in. Do it at your own speed and turn it in whenever you can.|
 A The Road to Darnassus|AVAILABLE|487|M|55.74,58.34|N|If Moon Priestess Amara is currently here pick up her quest. If not she is currently patrolling and we will pick it up later, so right click it off.|
 
 R Twisted Hatred|QID|932|M|53.94,58.13;53.65,55.86;54.65,52.65|CC|N|The cave for this quest is behind the tree building.|
