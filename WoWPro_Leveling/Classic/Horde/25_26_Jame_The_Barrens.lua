@@ -2,7 +2,7 @@
 -- Permissions beyond the scope of this license may be available at http://www.wow-pro.com/License.
 
 local guide = WoWPro:RegisterGuide('Classic-25-26-Jame-TheBarrens', 'Leveling', 'The Barrens', 'Jame', 'Horde', 1)
-WoWPro:GuideName(guide, 'Ashenvale')
+WoWPro:GuideName(guide, 'The Barrens')
 WoWPro:GuideLevels(guide, 25, 26, 25)
 WoWPro:GuideSteps(guide, function() return [[
 H Orgrimmar|QID|5052|U|6948|
