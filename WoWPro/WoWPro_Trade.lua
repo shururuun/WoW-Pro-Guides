@@ -136,7 +136,7 @@ WoWPro.ProfessionSkillLines = {
     [2513] = { exp = 1, name = 'Outland Inscription' },
     [2514] = { exp = 0, name = 'Inscription' },
 
-    --  Archeology is not included in GetTradeSkillLineInfoByID()
+    --  Archaeology is not included in GetTradeSkillLineInfoByID()
      [794] = { name = 'Archaeology' }
 }
 
@@ -147,7 +147,7 @@ if WoWPro.CLASSIC then
     -- list of all available professions and SpellIDs with their names
     WoWPro.ProfessionSpellIDs = {
         ['Alchemy'] = 2259,
-        ['Archeology'] = 78670,
+        ['Archaeology'] = 78670,
         ['Blacksmithing'] = 2018,
         ['Cooking'] = 2550,
         ['Enchanting'] = 7411,
