@@ -1,9 +1,10 @@
 -- WoWPro Guides by "The WoW-Pro Community" are licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
 -- Permissions beyond the scope of this license may be available at http://www.wow-pro.com/License.
 
-local guide = WoWPro:RegisterGuide('ClassicTirisfal0112', "Leveling", 'Tirisfal Glades', 'Manovan', 'Horde', 1)
-WoWPro:GuideName(guide, 'Tirisfal Glades 01-12')
+local guide = WoWPro:RegisterGuide('Classic-01-12-Manovan-TirisfalGlades', "Leveling", 'Tirisfal Glades', 'Manovan', 'Horde', 1)
+WoWPro:GuideName(guide, 'Tirisfal Glades')
 WoWPro:GuideLevels(guide, 1, 12, 2)
+WoWPro:GuideNextGuide(guide, 'Classic-12-14-SilverKnight-SilverpineForest')
 WoWPro:GuideSteps(guide, function() return [[
 R Go upstairs|QID|363|R|Undead|M|30.00,72.84|CC|N|Leave the crypt and go upstairs to your first quest.|
 A Rude Awakening|QID|363|R|Undead|M|30.21,71.64|N|From Undertaker Mordo outside.|

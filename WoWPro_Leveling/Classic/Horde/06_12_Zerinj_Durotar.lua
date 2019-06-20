@@ -1,9 +1,10 @@
 -- WoWPro Guides by "The WoW-Pro Community" are licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
 -- Permissions beyond the scope of this license may be available at http://www.wow-pro.com/License.
 
-local guide = WoWPro:RegisterGuide('ClassicDurotar0612', 'Leveling', 'Durotar', 'Zerinj', 'Horde', 1)
-WoWPro:GuideName(guide, 'Durotar 06-12')
+local guide = WoWPro:RegisterGuide('Classic-06-12-Zerinj-Durotar', 'Leveling', 'Durotar', 'Zerinj', 'Horde', 1)
+WoWPro:GuideName(guide, 'Durotar')
 WoWPro:GuideLevels(guide, 6, 12, 7)
+WoWPro:GuideNextGuide(guide, 'Classic-12-21-Hosho-TheBarrens')
 WoWPro:GuideSteps(guide, function() return [[
 ; --- carry over quests from last guide ---------------------------------------
 A Dark Storms|AVAILABLE|806|M|52.25,43.15|N|From Orgnil Soulscar.|

@@ -1,10 +1,10 @@
 -- WoWPro Guides by "The WoW-Pro Community" are licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
 -- Permissions beyond the scope of this license may be available at http://www.wow-pro.com/License.
 
-local guide = WoWPro:RegisterGuide('ClassicMulgore0105', "Leveling", 'Mulgore', 'Shururu', 'Horde', 1)
-WoWPro:GuideName(guide, 'Mulgore 01-05')
+local guide = WoWPro:RegisterGuide('Classic-01-05-Shururu-Mulgore', "Leveling", 'Mulgore', 'Shururu', 'Horde', 1)
+WoWPro:GuideName(guide, 'Mulgore')
 WoWPro:GuideLevels(guide, 1, 5, 2)
-WoWPro:GuideNextGuide(guide, 'ClassicMulgore0612')
+WoWPro:GuideNextGuide(guide, 'Classic-06-12-Shinke-Mulgore')
 WoWPro:GuideSteps(guide, function() return [[
 A The Hunt Begins|QID|747|M|44.87,77.08|N|From Grull Hawkwind.|
 A A Humble Task|QID|752|M|44.19,76.06|N|From Chief Hawkwind.|
