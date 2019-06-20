@@ -55,6 +55,14 @@ WoWPro.ProfessionSkillLines = {
     [2547] = { exp = 1, parent = 185, name = 'Outland Cooking' },
     [2548] = { exp = 0, parent = 185, name = 'Cooking' },
 
+    -- Cooking Pandaria Specializations
+     [975] = { exp = 4, parent = 185, name = 'Way of the Grill' },
+     [976] = { exp = 4, parent = 185, name = 'Way of the Wok' },
+     [977] = { exp = 4, parent = 185, name = 'Way of the Pot' },
+     [978] = { exp = 4, parent = 185, name = 'Way of the Steamer' },
+     [979] = { exp = 4, parent = 185, name = 'Way of the Oven' },
+     [980] = { exp = 4, parent = 185, name = 'Way of the Brew' },
+
      [186] = { name = 'Mining' },
     [2565] = { exp = 7, parent = 186, name = 'Battle for Azeroth Mining' },
     [2566] = { exp = 6, parent = 186, name = 'Legion Mining' },
@@ -138,6 +146,37 @@ WoWPro.ProfessionSkillLines = {
 
     --  Archaeology is not included in GetTradeSkillLineInfoByID()
      [794] = { name = 'Archaeology' }
+}
+
+-- mapping of profession categories to tradeskill lines we are interested in
+WoWPro.ProfessionCategories = {
+    -- Cooking Pandaria Specializations
+    [64] = 975,     -- Way of the Grill
+    [65] = 976,     -- Way of the Wok
+    [66] = 977,     -- Way of the Pot
+    [67] = 978,     -- Way of the Steamer
+    [68] = 979,     -- Way of the Oven
+    [69] = 980,     -- Way of the Brew
+
+    -- Cooking
+    [1016] = 2548,  -- Classic
+    [1017] = 2547,  -- Outland
+    [1018] = 2548,  -- Northrend
+    [1019] = 2545,  -- Cataclysm
+    [1015] = 2544,  -- Pandaria
+    [1013] = 2543,  -- Draenor
+    [1014] = 2542,  -- Legion
+    [1117] = 2541,  -- Battle for Azeroth
+
+    -- Fishing
+    [1099] = 2592,  -- Classic
+    [1101] = 2591,  -- Outland
+    [1103] = 2590,  -- Northrend
+    [1105] = 2589,  -- Cataclysm
+    [1107] = 2588,  -- Pandaria
+    [1109] = 2587,  -- Draenor
+    [1111] = 2586,  -- Legion
+    [1113] = 2585   -- Battle for Azeroth
 }
 
 
