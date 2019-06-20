@@ -1,10 +1,10 @@
 -- WoWPro Guides by "The WoW-Pro Community" are licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
 -- Permissions beyond the scope of this license may be available at http://www.wow-pro.com/License.
 
-local guide = WoWPro:RegisterGuide('ClassicDurotar0105', 'Leveling', 'Durotar', 'Zerinj', 'Horde', 1)
-WoWPro:GuideName(guide, 'Durotar 01-05')
+local guide = WoWPro:RegisterGuide('Classic-01-05-Zerinj-Durotar', 'Leveling', 'Durotar', 'Zerinj', 'Horde', 1)
+WoWPro:GuideName(guide, 'Durotar')
 WoWPro:GuideLevels(guide, 1, 5, 2)
-WoWPro:GuideNextGuide(guide, 'ClassicDurotar0612')
+WoWPro:GuideNextGuide(guide, 'Classic-06-12-Zerinj-Durotar')
 WoWPro:GuideSteps(guide, function() return [[
 A Your Place In The World|QID|4641|M|43.29,68.54|N|From Kaltunk.|
 
@@ -83,7 +83,6 @@ T Call of Earth|QID|1517|C|Shaman|R|Orc,Troll|M|43.40,69.42;43.08,71.11;41.27,73
 A Call of Earth|QID|1518|PRE|1517|C|Shaman|R|Orc,Troll|M|44.02,76.17|N|From Minor Manifestation of Earth.|
 T Call of Earth|QID|1518|C|Shaman|R|Orc,Troll|M|42.41,69.16|N|To Canaga Earthcaller.|
 r Sell Junk|QID|6394|M|42.59,67.34|N|Right-click this step off once you are finished.|
-
 
 R Cave Entrance|QID|6394|M|45.33,56.43|CC|N|Go to the cave entrance.|
 C Thazz'ril's Pick|QID|6394|M|45.03,54.90;44.42,54.60;43.73,53.79|CS|L|16332|NC|N|Fight your way back into the infested cave. At the far end of the middle room there is the Mining Pick.|
