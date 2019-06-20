@@ -4,6 +4,7 @@
 local guide = WoWPro:RegisterGuide('Classic-25-26-Jame-TheBarrens', 'Leveling', 'The Barrens', 'Jame', 'Horde', 1)
 WoWPro:GuideName(guide, 'The Barrens')
 WoWPro:GuideLevels(guide, 25, 26, 25)
+WoWPro:GuideNextGuide(guide, 'Classic-26-27-Jame-Ashenvale')
 WoWPro:GuideSteps(guide, function() return [[
 H Orgrimmar|QID|5052|U|6948|
 N Auction House|QID|6504|N|Check the AH for: Shredder Operating Manual pages, Deadly Blunderbuss |Z|Orgrimmar|M|53.7,64.6|
