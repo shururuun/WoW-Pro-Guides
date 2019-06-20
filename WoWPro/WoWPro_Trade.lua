@@ -211,125 +211,203 @@ if WoWPro.CLASSIC then
         end
     end
 
+    -- generate a lookup table for profession names to profession skill lines
+    WoWPro.ProfessionNameToSkillLine = {}
+    for profID, profession in pairs(WoWPro.ProfessionSkillLines) do
+        if not profession.exp then
+            WoWPro.ProfessionNameToSkillLine[profession.name] = profID
+        end
+    end
+
     -- get tradeskill information from skill lines
     function WoWPro.UpdateTradeSkills()
-        WoWPro:dbp("UpdateTradeSkills() for Classic")
+        local scanned = 0
         local tradeskills = {}
+
         for idx = 1, GetNumSkillLines() do
             local localName, header, _, skillLevel, _, skillModifier, skillMaxRank = GetSkillLineInfo(idx)
-            local tradeskillName = WoWPro.ProfessionLocalNames[localName]
-            if not header and tradeskillName ~= nil then
-                tradeskills[tradeskillName] = {
+            local skillName = WoWPro.ProfessionLocalNames[localName]
+            local profID = WoWPro.ProfessionNameToSkillLine[skillName]
+            if not header and profID and skillName then
+                tradeskills[profID] = {
+                    name = skillName,
                     skillLvl = skillLevel,
                     skillMod = skillModifier,
                     skillMax = skillMaxRank
                 }
+                scanned = scanned + 1
             end
         end
+
         WoWPro.UpdateTradeSkillsTable(tradeskills)
+        WoWPro:dbp("UpdateTradeSkills() for Classic scanned %d tradeskills", scanned)
     end
 else
     -- get tradeskill information from GetProfession/GetProfessionInfo
     function WoWPro.UpdateTradeSkills()
-        WoWPro:dbp("UpdateTradeSkills() for Live")
+        local scanned = 0
         local tradeskills = {}
-        local profs = {}
-        profs[1], profs[2], profs[3], profs[4], profs[5], profs[6] = GetProfessions()
-        for idx = 1, 6 do
-            if profs[idx] then
-                local _, _, skillLevel, maxSkillLevel, _, _, skillLine, skillModifier = GetProfessionInfo(profs[idx])
-                local profName = WoWPro.ProfessionSkillLines[skillLine].name
-                if profName then
-                    tradeskills[profName] = {
-                        skillLvl = skillLevel,
-                        skillMax = maxSkillLevel,
-                        skillMod = skillModifier
-                    }
-                end
+
+        -- first scan all profession tradeskill lines that are learned
+        for _, skillLineID in ipairs(C_TradeSkillUI.GetAllProfessionTradeSkillLines()) do
+            local _, skillLineRank, skillLineMaxRank, skillLineModifier, parentSkillLineID = C_TradeSkillUI.GetTradeSkillLineInfoByID(skillLineID)
+            if skillLineRank > 0 and WoWPro.ProfessionSkillLines[skillLineID] then
+                tradeskills[skillLineID] = {
+                    name = WoWPro.ProfessionSkillLines[skillLineID].name,
+                    skillLvl = skillLineRank,
+                    skillMax = skillLineMaxRank,
+                    skillMod = skillLineModifier
+                }
+                scanned = scanned + 1
             end
         end
+
+        -- scan with GetProfessions()
+        for _, profID in ipairs({GetProfessions()}) do
+            local name, _, skillLineRank, skillLineMaxRank, _, _, skillLineID, skillLineModifier, _, _, subName = GetProfessionInfo(profID)
+
+            -- skillLineID is always the parent ID, so once you learn an expansion
+            -- GetProfessionInfo() is no longer useful except for Archaeology
+            if WoWPro.ProfessionSkillLines[skillLineID] and (not subName or name == subName) then
+                tradeskills[skillLineID] = {
+                    name = WoWPro.ProfessionSkillLines[skillLineID].name,
+                    skillLvl = skillLineRank,
+                    skillMax = skillLineMaxRank,
+                    skillMod = skillLineModifier
+                }
+                scanned = scanned + 1
+            end
+        end
+
         WoWPro.UpdateTradeSkillsTable(tradeskills)
+        WoWPro:dbp("UpdateTradeSkills() scanned %d tradeskills", scanned)
     end
 end
 
 
 -- update WoWProCharDB.Tradeskill map so we don't forget detailed ScanTrade() info
 function WoWPro.UpdateTradeSkillsTable(tradeskills)
-    if WoWProCharDB.Tradeskills then
-        -- remove unlearned professions
-        for trade in pairs(WoWProCharDB.Tradeskills) do
-            if tradeskills[trade] == nil then
-                WoWProCharDB.Tradeskills[trade] = nil
-            end
-        end
-        -- add/update learned professions
-        for trade, info in pairs(tradeskills) do
-            if WoWProCharDB.Tradeskills[trade] == nil then
-                WoWProCharDB.Tradeskills[trade] = info
-            else
-                WoWProCharDB.Tradeskills[trade].skillLvl = info.skillLvl
-                WoWProCharDB.Tradeskills[trade].skillMax = info.skillMax
-                WoWProCharDB.Tradeskills[trade].skillMod = info.skillMod
-            end
-        end
-    else
+    if not WoWProCharDB.Tradeskills then
         WoWProCharDB.Tradeskills = tradeskills
-    end
-end
-
-
--- scan tradeskill recipe IDs
-function WoWPro.ScanTrade()
-    -- local tradeskillName, rank, maxLevel = GetTradeSkillLine()
-    local tradeSkillID, skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier =  C_TradeSkillUI.GetTradeSkillLine();
-    
-    if not skillLineName then
-        -- Got event when not in Trade window. Ignore
         return
     end
 
-    WoWPro:dbp("Opened %s window",skillLineName)
-    WoWProCharDB.Trades = WoWProCharDB.Trades or {}
-    local Trade = WoWProCharDB.Trades 
-    
-    -- Scan trade skills, saving state of headers
-    local recipeIDs = C_TradeSkillUI.GetAllRecipeIDs({})
-    WoWPro:dbp("Located %d recipeIDs",#recipeIDs)
-    
-    for i, recipeID in ipairs(recipeIDs) do
-		local recipeInfo = C_TradeSkillUI.GetRecipeInfo(recipeID)
-		if recipeInfo.type == "recipe" then
-		    if recipeInfo.learned then
---		        WoWPro:Print("Scanning %d:%s",recipeID,recipeInfo.name)
-                local link = C_TradeSkillUI.GetRecipeLink(recipeID)
-                local _, _, spellId = link:find("^|%x+|Henchant:(.+)|h%[.+%]");
-                spellId = tonumber(spellId)
-                if not spellId then
-                    local safe_link = link:gsub("|", "¦")
-                    WoWPro:Error("Error scanning recipeID %d for [%s]: %s",recipeID, recipeInfo.name, safe_link)
-                else
-                    if not Trade[spellId] then
-                        Trade[spellId] = true
-                        WoWPro:dbp("Newly learned %s:%d",recipeInfo.name, spellId)
-                    end
-                end
+    -- remove unlearned/unavailable professions, except for cooking or fishing
+    for trade in pairs(WoWProCharDB.Tradeskills) do
+        local skillLine = WoWPro.ProfessionSkillLines[trade]
+        if not skillLine then
+            WoWProCharDB.Tradeskills[trade] = nil
+        elseif tradeskills[trade] == nil and trade ~= 185 and skillLine.parent ~= 185 and trade ~= 356 and skillLine.parent ~= 356 then
+            WoWProCharDB.Tradeskills[trade] = nil
+        end
+    end
+
+    -- add/update learned professions
+    for trade, info in pairs(tradeskills) do
+        if WoWProCharDB.Tradeskills[trade] == nil then
+            WoWProCharDB.Tradeskills[trade] = info
+        else
+            for key, val in ipairs(info) do
+                WoWProCharDB.Tradeskills[trade].key = val
             end
         end
-	end
-
-    WoWProCharDB.Trades  = Trade
+    end
 end
 
 
-function WoWPro.LearnRecipe(which)
-    local which = tonumber(which)
-    if which then
-        if WoWProCharDB.Trades[which] then
+-- special handling for Classic because of the reduced addon API
+if WoWPro.CLASSIC then
+    -- scan Tradeskill information and recipes on Classic
+    function WoWPro.ScanTrade()
+        WoWPro:dbp("ScanTrade() for Classic")
+
+        -- FIXME: find a way to scan recipes without C_TradeSkillUI and
+        -- GetSpellInfo("name", "") doesn't return information for tradeskills
+        -- GetTradeSkillItemLink() returns the resulting item, not the spellID
+        -- skillName, skillType, numAvailable = GetTradeSkillInfo(index)
+    end
+else
+    -- scan Tradeskill information and recipes on Live
+    function WoWPro.ScanTrade()
+        -- read tradeskill information from GetTradeSkillLine()
+        local skillLineID, skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier = C_TradeSkillUI.GetTradeSkillLine();
+        if not skillLineID then
+            return
+        end
+
+        -- don't scan other players tradeskills
+        if C_TradeSkillUI.IsTradeSkillLinked() then
+            return
+        end
+        WoWPro:dbp("ScanTrade() opened %s window", skillLineName)
+
+        -- update tradeskill information directly
+        local tradeInfo = WoWProCharDB.Tradeskills[skillLineID] or {}
+        tradeInfo.name = WoWPro.ProfessionSkillLines[skillLineID].name
+        tradeInfo.skillLvl = skillLineRank
+        tradeInfo.skillMax = skillLineMaxRank
+        tradeInfo.skillMod = skillLineModifier
+        WoWProCharDB.Tradeskills[skillLineID] = tradeInfo
+
+        -- scan catgegories
+        local catInfo = {}
+        for _, catID in ipairs({C_TradeSkillUI.GetCategories()}) do
+
+            -- only scan category IDs we are interested in
+            local skillLineID = WoWPro.ProfessionSkillLines[catID]
+            if skillLineID then
+                C_TradeSkillUI.GetCategoryInfo(catID, catInfo)
+                if catInfo.hasProgressBar and catInfo.skillLineCurrentLevel and catInfo.skillLineMaxLevel then
+                    local tradeInfo = WoWProCharDB.Tradeskills[skillLineID] or {}
+                    tradeInfo.name = WoWPro.ProfessionSkillLines[skillLineID].name
+                    tradeInfo.skillLvl = skillLineRank
+                    tradeInfo.skillMax = skillLineMaxRank
+                    tradeInfo.skillMod = skillLineModifier
+                    WoWProCharDB.Tradeskills[skillLineID] = tradeInfo
+                end
+            end
+        end
+
+        -- scan all recipes available and store them
+        WoWProCharDB.Trades = WoWProCharDB.Trades or {}
+        local Trades = WoWProCharDB.Trades
+        local recipes = 0
+        local learned = 0
+        local recipeInfo = {}
+        for _, recipeID in pairs(C_TradeSkillUI.GetAllRecipeIDs()) do
+            C_TradeSkillUI.GetRecipeInfo(recipeID, recipeInfo)
+            if recipeInfo.type == 'recipe' and recipeInfo.learned then
+                local link = C_TradeSkillUI.GetRecipeLink(recipeID)
+                local _, _, spellId = link:find("^|%x+|Henchant:(.+)|h%[.+%]")
+                spellId = tonumber(spellId)
+                if not spellId then
+                    local safe_link = link:gsub("|", "¦")
+                    WoWPro:Error("Error scanning recipeID %d for [%s]: %s", recipeID, recipeInfo.name, safe_link)
+                else
+                    if not Trades[spellId] then
+                        Trades[spellId] = true
+                        WoWPro:dbp("Newly learned %s:%d", recipeInfo.name, spellId)
+                        learned = learned + 1
+                    end
+                    recipes = recipes + 1
+                end
+            end
+        end
+        WoWPro:dbp("ScanTrade() recorded %d known recipes, %d learned", recipes, learned)
+    end
+end
+
+
+-- learn recipe from NEW_RECIPE_LEARNED event
+function WoWPro.LearnRecipe(spellID)
+    local spellID = tonumber(spellID)
+    if spellID then
+        if WoWProCharDB.Trades[spellID] then
             -- You managed to learn something you already knew?
-            WoWPro:Warning("Recipe %d was already recorded as learned.",which)
+            WoWPro:Warning("Recipe %d was already recorded as learned.", spellID)
         else
             WoWProCharDB.Trades[which] = true
-            WoWPro:dbp("Newly learned %d", which)
+            WoWPro:dbp("Newly learned %d", spellID)
         end
     end
 end
