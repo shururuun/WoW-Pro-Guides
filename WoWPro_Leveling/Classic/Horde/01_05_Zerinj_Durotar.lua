@@ -107,6 +107,11 @@ A Practical Prey|QID|817|M|55.95,73.93|N|From Vel'rin Fang inside a small hut.|
 
 T Report to Orgnil|QID|823|M|52.25,43.15|N|To Orgnil Soulscar north in Razor Hill.|
 A Dark Storms|QID|806|M|52.25,43.15|N|From Orgnil Soulscar.|
+A Vanquish the Betrayers|QID|784|M|51.95,43.50|N|From Gar'Thok.|
+A Encroachment|QID|837|M|51.95,43.50|N|From Gar'Thok.|
+
+N First Aid|P|First Aid;129;0;1;75|M|54.17,41.94|N|From Rawrk inside the large building you can learn First Aid. Right-click this step off to skip.|
+
 T A Peon's Burden|QID|2161|M|51.52,41.65|N|To Innkeeper Grosk.|
 h Razor Hill|QID|784|M|51.52,41.65|N|Set your hearthstone here.|
 ]]
