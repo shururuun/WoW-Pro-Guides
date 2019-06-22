@@ -49,12 +49,13 @@ T From The Wreckage....|QID|825|M|51.95,43.50|N|To Gar'Thok.|
 N Train your skills|QID|786|N|Train your level 8 skills. Right-click this step off once you are done.|
 r Sell Junk and Repair|QID|786|M|51.90,41.14|N|Sell Junk and Repair before heading out again.|
 
-T From The Wreckage...|QID|825|M|51.9,43.5|N|Go back to Razor Hill. If you are level 8 get training, if not don't worry we will be back here in a little while.|
+R Thwarting Kolkar Aggression|QID|786|M|50.84,79.13|N|Run south to the Kolkar Crag.|
+C Thwarting Kolkar Aggression|QID|786|QO|1|M|49.82,81.29|NC|N|Burn the Valley of Trials Attack Plans. They are inside the big tent.|
+C Thwarting Kolkar Aggression|QID|786|QO|3|M|46.23,78.95|NC|N|Burn the Orgrimmar Attack Plans.|
+C Thwarting Kolkar Aggression|QID|786|QO|2|M|47.66,77.34|NC|N|Burn the Sen'jin Village Attack Plans.|
 
-C Thwarting Kolkar Aggression|QID|786|M|50.8,79.2|N|Run south to (50.8,79.2). The attack plans are in a tent at (49.8,81.3), inside the canyon at (47.7,77.3) and on the opposite path at (46.2,78.9).|
-
-T Thwarting Kolkar Aggression|QID|786|M|54.5,74.7|N|Go back to Sen'Jin Village.|
-T A Solvent Spirit|QID|818|M|55.9,74.4|
+T Thwarting Kolkar Aggression|QID|786|M|54.24,75.80|N|To Lar Prowltusk.|
+T A Solvent Spirit|QID|818|M|55.95,74.40|N|To Master Vornal.|
 
 C Break a Few Eggs|QID|815|S|
 C Practical Prey|QID|817|S|
