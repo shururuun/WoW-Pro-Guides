@@ -8,6 +8,8 @@ WoWPro:GuideNextGuide(guide, 'Classic-12-21-Hosho-TheBarrens')
 WoWPro:GuideSteps(guide, function() return [[
 ; --- carry over quests from last guide ---------------------------------------
 A Dark Storms|AVAILABLE|806|M|52.25,43.15|N|From Orgnil Soulscar.|
+A Vanquish the Betrayers|AVAILABLE|784|M|51.95,43.50|N|From Gar'Thok.|
+A Encroachment|AVAILABLE|837|M|51.95,43.50|N|From Gar'Thok.|
 A Thwarting Kolkar Aggression|AVAILABLE|786|M|54.50,74.97|N|From Lar Prowltusk.|
 A Minshina's Skull|AVAILABLE|808|M|55.95,74.72|N|From Master Gadrin.|
 A Zalazane|AVAILABLE|826|M|55.95,74.72|N|From Master Gadrin.|
@@ -15,35 +17,37 @@ A A Solvent Spirit|AVAILABLE|818|M|55.95,74.40|N|From Master Vornal.|
 A Practical Prey|AVAILABLE|817|M|55.95,73.93|N|From Vel'rin Fang inside a small hut.|
 ; -----------------------------------------------------------------------------
 
-A Vanquish the Betrayers|QID|784|M|51.9,43.5|
-A Encroachment|QID|837|M|51.9,43.5|
-A Break a Few Eggs|QID|815|M|51.2,42.5|
-A Carry Your Weight|QID|791|M|49.9,40.3|N|Go up to the watchtower northwest of Razor Hill. The path starts behind the tree next to you.|
+A Break a Few Eggs|QID|815|M|51.11,42.45|N|From Cook Torka.|
+A Carry Your Weight|QID|791|M|50.07,42.93;49.88,40.38|CS|N|From Furl Scornbrow up the watchtower northwest of Razor Hill.|
 
-T In Favor of Spirituality|QID|5649|C|Priest|R|Orc,Troll|M|54.2,42.9|
-A Garments of Spirituality|QID|5648|C|Priest|R|Orc,Troll|M|54.2,42.9|
-C Garments of Spirituality|QID|5648|C|Priest|R|Orc,Troll|M|53.1,46.5|N|Use Power Word: Fortitude and Lesser Heal on Grunt Kor'ja|
-T Garments of Spirituality|QID|5648|C|Priest|R|Orc,Troll|M|54.2,42.9|
+T In Favor of Spirituality|QID|5649|C|Priest|R|Orc,Troll|M|54.26,42.93|N|To Tai'jin.|
+A Garments of Spirituality|QID|5648|C|Priest|R|Orc,Troll|M|54.26,42.93|N|From Tai'jin.|
+C Garments of Spirituality|QID|5648|C|Priest|R|Orc,Troll|M|53.10,46.46|NC|N|Use Power Word: Fortitude and Lesser Heal on Grunt Kor'ja|
+T Garments of Spirituality|QID|5648|C|Priest|R|Orc,Troll|M|54.26,42.93|N|To Tai'jin.|
 
-C Carry Your Weight|QID|791|S|
-K Lieutenant Benedict|QID|784|M|59.4,58.3|QO|Lieutenant Benedict slain: 1/1|N|Go south-east to Tiragarde Keep and kill Kul Tiras Sailors and Marines while making your way to the castle. Once at the castle go upstairs into a big room, and kill Lieutenant Benedict. Be sure to loot the key from him.|
-N Aged Envelope|QID|830|L|4881|N|Go up to the top of the castle and open Benedict's Chest.|
-A The Admiral's Orders|QID|830|U|4881|
-C Vanquish the Betrayers|QID|784|N|Kill any remaining marines or sailors you need.|
-C Carry Your Weight|QID|791|US|
+C Vanquish the Betrayers|QID|784|S|N|Kill Kul Tiras Sailors and Marines on the way.|
+C Carry Your Weight|QID|791|S|N|Loot Canvas Scraps from Kul Tiras Sailors and Marines on the way.|
+K Lieutenant Benedict|QID|784|M|59.40,58.30|QO|3|L|4882|N|Make your way into the castle. Inside go upstairs and work your way to the main room. Kill Lieutenant Benedict. Loot his key for the next chest.|
+N Aged Envelope|QID|830|L|4881|NC|N|Go up to the top of the castle and open Benedict's Chest.|
+A The Admiral's Orders|QID|830|U|4881|N|Start the quest from the Aged Envelope.|
+C Carry Your Weight|QID|791|US|N|Loot the remaining Canvas Scraps from Kul Tiras Sailors and Marines.|
+C Vanquish the Betrayers|QID|784|US|N|Kill the remaining Kul Tiras Sailors and Marines.|
 
-T Vanquish the Betrayers|QID|784|M|51.9,43.5|N|Go back to Razor Hill.|
-A From The Wreckage....|QID|825|M|51.9,43.5|
-T The Admiral's Orders|QID|830|M|51.9,43.5|
-A The Admiral's Orders|QID|831|M|51.9,43.5|
-T Carry Your Weight|QID|791|M|49.9,40.3|
+T Vanquish the Betrayers|QID|784|M|51.95,43.50|N|To Gar'Thok.|
+A From The Wreckage....|QID|825|PRE|784|M|51.95,43.50|N|From Gar'Thok.|
+T The Admiral's Orders|QID|830|M|51.95,43.50|N|To Gar'Thok.|
+A The Admiral's Orders|QID|831|PRE|830|M|51.95,43.50|N|From Gar'Thok.|
+T Carry Your Weight|QID|791|M|49.88,40.38|N|To Furl Scornbrow up the watchtower.|
 
-C A Solvent Spirit|QID|818|S|
-C From The Wreckage....|QID|825|M|64,52|N|Go south-east and look for Gnomish Tools.|
-C A Solvent Spirit|QID|818|US|
+C A Solvent Spirit|QID|818|S|N|Kill Makrura and Crawlers on the way.|
+C From The Wreckage....|QID|825|M|64.00,52.00|N|Go south-east and look for Gnomish Tools.|
+C A Solvent Spirit|QID|818|US|N|Kill Makrura and Crawlers on the way.|
 
-K Razormane|QID|837|M|49,49|QO|Razormane Quilboar slain: 4/4|N|Go to the north-west to the area around (49,49) and kill 4 Razormane Quilboars and 4 Razormane Scouts.|
-K Razormane|QID|837|QO|Razormane Scout slain: 4/4|N|Go to the north-west to the area around (49,49) and kill 4 Razormane Scouts.|
+K Encroachment|QID|837|M|50.58,49.11|QO|1;2|N|Go to the southwest of Razor Hill and kill Razormane Quillboars and Razormane Scouts.|
+L Level 8|QID|825|LVL|8|N|You should be level 8 or shortly before. Grind a bit on the Quillboars if not.|
+T From The Wreckage....|QID|825|M|51.95,43.50|N|To Gar'Thok.|
+N Train your skills|QID|786|N|Train your level 8 skills. Right-click this step off once you are done.|
+r Sell Junk and Repair|QID|786|M|51.90,41.14|N|Sell Junk and Repair before heading out again.|
 
 T From The Wreckage...|QID|825|M|51.9,43.5|N|Go back to Razor Hill. If you are level 8 get training, if not don't worry we will be back here in a little while.|
 
