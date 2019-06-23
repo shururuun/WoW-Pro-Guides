@@ -41,7 +41,7 @@ T Rune-Inscribed Parchment|QID|3089|C|Shaman|R|Orc|M|42.39,69.00|N|To Shikrik. A
 T Tainted Parchment|QID|3090|C|Warlock|R|Orc|M|40.65,68.50|N|To Nartok deep inside the cave. Also train your new skills.|
 
 A Galgar's Cactus Apple Surprise|QID|4402|M|42.73,67.24|N|From Galgar.|
-C Galgar's Cactus Apple Surprise|QID|4402|S|NC|L|11583 10|N|Loot Cactus Apples from Cactuses.|
+C Galgar's Cactus Apple Surprise|QID|4402|L|11583 10|S|NC|N|Loot Cactus Apples from Cactuses.|
 C Sting of the Scorpid|QID|789|S|N|Kill Scorpid Workers and loot their Scorpid Worker Tails.|
 A Sarkoth|QID|790|M|43.83,66.82;40.60,62.59|CS|N|From Hana'zua.|
 C Sting of the Scorpid|QID|789|US|N|Kill Scorpid Workers and loot their Scorpid Worker Tails.|
@@ -49,7 +49,7 @@ L Level 3|LVL|3|N|If you are not yet level 3 grind on mobs.|
 C Sarkoth|QID|790|M|40.67,66.33|L|4905|N|Go up the hill and kill Sarkoth, who roams the hillside. Loot his Mangled Claw.|
 T Sarkoth|QID|790|M|40.60,62.59|N|To Hana'zua.|
 A Sarkoth|QID|804|PRE|790|M|40.60,62.59|N|From Hana'zua.|
-C Galgar's Cactus Apple Surprise|QID|4402|US|NC|L|11583 10|N|Loot Cactus Apples from Cactuses.|
+C Galgar's Cactus Apple Surprise|QID|4402|L|11583 10|US|NC|N|Loot Cactus Apples from Cactuses.|
 L Level 4|LVL|4|N|Grind to level 4. The three quests we are about to turn in give 380 + 250 + 100 = 730 XP.|
 T Sting of the Scorpid|QID|789|M|42.06,68.33|N|To Gornek.|
 T Sarkoth|QID|804|M|42.06,68.33|N|To Gornek.|
@@ -57,23 +57,23 @@ r Sell Junk|QID|4402|M|42.59,67.34|N|Right-click this step off once you are fini
 T Galgar's Cactus Apple Surprise|QID|4402|M|42.73,67.24|N|To Galgar.|
 N Train|AVAILABLE|5441|N|Go to your trainer and learn your level 4 skills/spells. Right-click this step off.|
 
-A Call of Earth|QID|1516|C|Shaman|R|Orc,Troll|M|42.41,69.116|N|From Canaga Earthcaller.|
+A Call of Earth|QID|1516|C|Shaman|R|Orc,Troll|M|42.41,69.12|N|From Canaga Earthcaller.|
 A Vile Familiars|QID|1485|C|Warlock|R|Orc,Troll|M|42.85,69.14|N|From Zureetha Fargaze.|
 A Vile Familiars|QID|792|M|42.85,69.14|N|From Zureetha Fargaze.|
 A Lazy Peons|QID|5441|M|44.62,68.65|N|From Foreman Thazz'ril.|
-C Lazy Peons|QID|5441|S|NC|U|16114|N|Hit Lazy Peons with the Foreman's Blackjack. You'll find them near the walls.|
+C Lazy Peons|QID|5441|U|16114|S|NC|N|Hit Lazy Peons with the Foreman's Blackjack. You'll find them near the walls.|
 
 C Vile Familiars|QID|792|M|45.17,57.12|N|Kill Vile Familiars in front of the cave.|
 C Vile Familiars|QID|1485|C|Warlock|R|Orc,Troll|
 C Call of Earth|QID|1516|C|Shaman|R|Orc,Troll|M|45.34,56.38|N|Kill Felstalkers just inside the cave.|
-C Lazy Peons|QID|5441|US|NC|U|16114|N|Hit Lazy Peons with the Foreman's Blackjack. You'll find them near the walls.|
+C Lazy Peons|QID|5441|U|16114|US|NC|N|Hit Lazy Peons with the Foreman's Blackjack. You'll find them near the walls.|
 
 T Lazy Peons|QID|5441|M|44.62,68.65|N|To Foreman Thazz'ril.|
 A Thazz'ril's Pick|QID|6394|PRE|5441|M|44.62,68.65|N|From Foreman Thazz'ril.|
 
-T Vile Familiars|QID|1485|C|Warlock|R|Orc,Troll|M|42.85,69.14|N|From Zureetha Fargaze.|
-A Vile Familiars|QID|1499|C|Warlock|R|Orc,Troll|M|42.6,68.9|
-T Vile Familiars|QID|1499|C|Warlock|R|Orc,Troll|M|42.9,69.1|
+T Vile Familiars|QID|1485|C|Warlock|R|Orc,Troll|M|42.60,68.90|N|To Ruzan.|
+A Vile Familiars|QID|1499|C|Warlock|R|Orc,Troll|M|42.60,68.90|N|From Ruzan.|
+T Vile Familiars|QID|1499|C|Warlock|R|Orc,Troll|M|42.85,69.14|N|To Zureetha Fargaze.|
 T Vile Familiars|QID|792|M|42.85,69.14|N|To Zureetha Fargaze.|
 A Burning Blade Medallion|QID|794|PRE|792|M|42.85,69.14|N|From Zureetha Fargaze.|
 
@@ -87,7 +87,7 @@ r Sell Junk|QID|6394|M|42.59,67.34|N|Right-click this step off once you are fini
 R Cave Entrance|QID|6394|M|45.33,56.43|CC|N|Go to the cave entrance.|
 C Thazz'ril's Pick|QID|6394|M|45.03,54.90;44.42,54.60;43.73,53.79|CS|L|16332|NC|N|Fight your way back into the infested cave. At the far end of the middle room there is the Mining Pick.|
 C Burning Blade Medallion|QID|794|M|44.64,54.79;44.41,52.78;43.24,52.06;42.70,52.95|CS|L|4859|N|Exit the room and take a left and follow the path. At the ledge is Yarrog Boneshadow. Kill him and loot the Medallion.|
-H Valley of Trials|QID|6394|M|44.6,68.7|U|6948|
+H Valley of Trials|QID|6394|
 
 T Thazz'ril's Pick|QID|6394|M|44.62,68.65|N|To Foreman Thazz'ril.|
 
